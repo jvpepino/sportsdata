@@ -23,7 +23,7 @@ const PlayerChart = (props) => {
   gamelogs.length && positionalStats(gamelogs, '@category', categories);
 
   let plotData = [];
-  gamelogs.length && gamelogs.map((match, index) => {
+  gamelogs.length && gamelogs.forEach((match, index) => {
     match.keyStats.length && match.keyStats.map(stat => {
       if (stat['@abbreviation'] === selectedStat) {
         plotData.push({ x: index + 1, y: +stat['#text'] })
@@ -48,18 +48,19 @@ const PlayerChart = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  gamelogs: state.player
+  gamelogs: state.gamelogs,
+
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  handleSubmit (event) {
-    event.preventDefault();
-    const name = event.target.name.value;
-    const league = event.target.league.value;
-    const year = event.target.year.value;
+// const mapDispatchToProps = (dispatch) => ({
+//   handleSubmit (event) {
+//     event.preventDefault();
+//     const name = event.target.name.value;
+//     const league = event.target.league.value;
+//     const year = event.target.year.value;
 
-    dispatch(getPlayerThunk(name, league, year))
-  }
-})
+//     dispatch(getPlayerThunk(name, league, year))
+//   }
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerChart);
+export default connect(mapStateToProps)(PlayerChart);

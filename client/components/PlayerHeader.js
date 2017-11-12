@@ -24,18 +24,7 @@ const PlayerHeader = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  gamelogs: state.player
+  gamelogs: state.gamelogs
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  handleSubmit (event) {
-    event.preventDefault();
-    const name = event.target.name.value;
-    const league = event.target.league.value;
-    const year = event.target.year.value;
-
-    dispatch(getPlayerThunk(name, league, year))
-  }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerHeader);
+export default connect(mapStateToProps)(PlayerHeader);

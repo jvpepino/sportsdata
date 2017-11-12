@@ -1,27 +1,24 @@
 import axios from 'axios'
 import history from '../history'
 
-// const auth = require('../../secrets')
-// const MySportsFeeds = require('mysportsfeeds-node')
-// const msf = new MySportsFeeds('1.0', true, null);
-// msf.authenticate(auth.username, auth.password);
-
-
 /**
  * ACTION TYPES
  */
-const GET_PLAYER = 'GET_PLAYER'
+const GET_GAMELOGS = 'GET_GAMELOGS'
 
 
 /**
  * INITIAL STATE
  */
-//const defaultUser = {}
+// const intialState = {
+//   gamelogs: [],
+//   compare: []
+// }
 
 /**
  * ACTION CREATORS
  */
-const getPlayer = player => ({type: GET_PLAYER, player})
+const getGamelogs = gamelogs => ({type: GET_GAMELOGS, gamelogs})
 
 
 /**
@@ -34,24 +31,25 @@ const getPlayer = player => ({type: GET_PLAYER, player})
 //         dispatch(getUser(res.data || defaultUser)))
 //       .catch(err => console.log(err))
 
-export const getPlayerThunk = (name, league, year) => {
+export const getGamelogsThunk = (name, league, year) => {
   return dispatch =>
     axios.get(`/api/sportsData?name=${name}&league=${league}&year=${year}`)
       .then(result => {
         const gamelogs = result.data.playergamelogs.gamelogs;
         const position = gamelogs[0].player.Position;
-        dispatch(getPlayer(gamelogs));
+        dispatch(getGamelogs(gamelogs));
         history.push(`/player/${position}`);
       })
       .catch(console.error.bind(console));
 }
+
 /**
  * REDUCER
  */
-export default function (state = {}, action) {
+export default function (state = [], action) {
   switch (action.type) {
-    case GET_PLAYER:
-      return action.player
+    case GET_GAMELOGS:
+      return action.gamelogs
     default:
       return state
   }

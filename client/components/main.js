@@ -3,7 +3,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
-import { SearchForm } from '../components'
+import { SearchForm, CompareForm } from '../components'
 
 /**
  * COMPONENT
@@ -18,6 +18,8 @@ const Main = (props) => {
     <div>
       <h1>Sportistics</h1>
       <SearchForm />
+      <hr />
+      <CompareForm />
       <hr />
       {children}
     </div>

@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 //import {withRouter, Link} from 'react-router-dom'
-import {getGamelogsThunk} from '../store'
+import {compareGamelogsThunk} from '../store'
 
 
-const SearchForm = (props) => {
+const CompareForm = (props) => {
 
   const leagues = ['NFL', 'NHL', 'NBA', 'MLB'];
   const regPlay = ['Regular', 'Playoff'];
@@ -24,11 +24,15 @@ const SearchForm = (props) => {
   const { handleSubmit } = props;
 
   return (
-    <form onSubmit={handleSubmit} name='searchPlayer'>
+    <form onSubmit={handleSubmit} name='comparePlayers'>
       <div>
-        <label htmlFor="name"><small>Player Name</small></label>
-        <input name="name" type="text" />
+        <label htmlFor="name1"><small>Player One</small></label>
+        <input name="name1" type="text" />
       </div>
+      <div>
+      <label htmlFor="name2"><small>Player Two</small></label>
+      <input name="name2" type="text" />
+    </div>
       <div>
         <label htmlFor="league"><small>League</small></label>
         <select name="league" type="text" defaultValue="nfl">
@@ -48,7 +52,7 @@ const SearchForm = (props) => {
         </select>
       </div>
       <div>
-        <button type="submit">Submit</button>
+        <button type="submit">Compare Players</button>
       </div>
     </form>
   )
@@ -57,13 +61,14 @@ const SearchForm = (props) => {
 const mapDispatchToProps = (dispatch) => ({
   handleSubmit (event) {
     event.preventDefault();
-    const name = event.target.name.value;
+    const name1 = event.target.name1.value;
+    const name2 = event.target.name2.value;
     const league = event.target.league.value.toLowerCase();
     const type = event.target.yearType.value.toLowerCase();
     let year = event.target.year.value
     if (type === 'playoff') { year = year.slice(-4); }
     const formYear = `${year}-${type}`;
-    dispatch(getGamelogsThunk(name, league, formYear))
+    dispatch(compareGamelogsThunk(name1, name2, league, formYear))
   }
 })
 
@@ -71,4 +76,4 @@ const mapDispatchToProps = (dispatch) => ({
 //   player: state.gamelogs
 // })
 
-export default connect(null, mapDispatchToProps)(SearchForm);
+export default connect(null, mapDispatchToProps)(CompareForm);

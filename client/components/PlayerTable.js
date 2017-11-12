@@ -15,8 +15,7 @@ import {
 
 class PlayerTable extends Component {
   state = {
-    selected: [0],
-    displayTable: true,
+    selected: [0]
   };
 
   isSelected = (index) => {
@@ -106,18 +105,18 @@ class PlayerTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  gamelogs: state.player
+  gamelogs: state.gamelogs
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  handleSubmit (event) {
-    event.preventDefault();
-    const name = event.target.name.value;
-    const league = event.target.league.value;
-    const year = event.target.year.value;
+// const mapDispatchToProps = (dispatch) => ({
+//   handleSubmit (event) {
+//     event.preventDefault();
+//     const name = event.target.name.value;
+//     const league = event.target.league.value;
+//     const year = event.target.year.value;
 
-    dispatch(getPlayerThunk(name, league, year))
-  }
-})
+//     dispatch(getPlayerThunk(name, league, year))
+//   }
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerTable);
+export default connect(mapStateToProps)(PlayerTable);
