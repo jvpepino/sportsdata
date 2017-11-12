@@ -6,3 +6,6 @@
 export {default as Main} from './main'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
+export {default as SearchForm} from './SearchForm'
+export {default as PlayerTable} from './PlayerTable'
+export {default as PlayerHeader} from './PlayerHeader'

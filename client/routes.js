@@ -2,10 +2,13 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome} from './components'
+
+import {Main, Login, Signup, UserHome, PlayerTable, PlayerHeader} from './components'
+
 import {me} from './store'
+
 
 /**
  * COMPONENT
@@ -16,24 +19,14 @@ class Routes extends Component {
   }
 
   render () {
-    const {isLoggedIn} = this.props
+    //const {isLoggedIn} = this.props
 
     return (
       <Router history={history}>
         <Main>
+          <PlayerHeader />
           <Switch>
-            {/* Routes placed here are available to all visitors */}
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            {
-              isLoggedIn &&
-                <Switch>
-                  {/* Routes placed here are only available after logging in */}
-                  <Route path="/home" component={UserHome} />
-                </Switch>
-            }
-            {/* Displays our Login component as a fallback */}
-            <Route component={Login} />
+            <Route path="/player/:position" component={PlayerTable} />
           </Switch>
         </Main>
       </Router>
@@ -41,6 +34,7 @@ class Routes extends Component {
   }
 }
 
+    // <Route path="/playerHeader" component={PlayerHeader} />
 /**
  * CONTAINER
  */
@@ -65,7 +59,20 @@ export default connect(mapState, mapDispatch)(Routes)
 /**
  * PROP TYPES
  */
-Routes.propTypes = {
-  loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
-}
+// Routes.propTypes = {
+//   loadInitialData: PropTypes.func.isRequired,
+//   isLoggedIn: PropTypes.bool.isRequired
+// }
+
+// {/* Routes placed here are available to all visitors */}
+// <Route path="/login" component={Login} />
+// <Route path="/signup" component={Signup} />
+// {
+//   isLoggedIn &&
+//     <Switch>
+//       {/* Routes placed here are only available after logging in */}
+//       <Route path="/home" component={UserHome} />
+//     </Switch>
+// }
+// {/* Displays our Login component as a fallback */}
+// <Route component={Login} />
