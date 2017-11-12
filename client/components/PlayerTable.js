@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 // import {withRouter, Link} from 'react-router-dom';
 import React, {Component} from 'react';
+// import * as V from 'victory';
 import positionalStats from '../../filterStatCategory';
 
 import {
@@ -15,6 +16,7 @@ import {
 class PlayerTable extends Component {
   state = {
     selected: [0],
+    displayTable: true,
   };
 
   isSelected = (index) => {
@@ -26,6 +28,18 @@ class PlayerTable extends Component {
       selected: selectedRows,
     });
   };
+
+  // toggleDisplay = () => {
+  //   this.setState({
+  //     displayTable: !!this.state.displayTable
+  //   })
+  // }
+
+  handleSubmit = (event, selectedPosition) => {
+    event.preventDefault();
+    const statCat = event.target.category.value;
+    this.props.history.push(`/player/${selectedPosition}/${statCat}`)
+  }
 
   render() {
     const { gamelogs, match } = this.props;
@@ -44,37 +58,49 @@ class PlayerTable extends Component {
     gamelogs.length && positionalStats(gamelogs, '@category', categories)
 
     return (
-      <Table onRowSelection={this.handleRowSelection}>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderColumn>Game</TableHeaderColumn>
-          {
-            !!gamelogs[0] && gamelogs[0].keyStats.map(stat =>
-              (<TableHeaderColumn key={stat['@abbreviation']}>
+      <div>
+        <Table onRowSelection={this.handleRowSelection}>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>Game</TableHeaderColumn>
+            {
+              !!gamelogs[0] && gamelogs[0].keyStats.map(stat =>
+                (<TableHeaderColumn key={stat['@abbreviation']}>
+                  {stat['@abbreviation']}
+                </TableHeaderColumn>)
+              )
+            }
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {
+              gamelogs.length && gamelogs.map((match, index) =>
+                (<TableRow key={match.game.id} selected={this.isSelected(index)}>
+                  <TableRowColumn>{index + 1}</TableRowColumn>
+                  {
+                    match.keyStats.length && match.keyStats.map(stats =>
+                      (<TableRowColumn key={stats['#text']}>
+                        {stats['#text']}
+                      </TableRowColumn>)
+                    )
+                  }
+                </TableRow>)
+              )
+            }
+          </TableBody>
+        </Table>
+        <form onSubmit={(event) => this.handleSubmit(event, selectedPosition)} name='playerChart'>
+          <label htmlFor="category"><small>Stat</small></label>
+          <select name="category" type="text">
+            { !!gamelogs[0] && gamelogs[0].keyStats.map(stat =>
+              (<option key={stat['@abbreviation']} value={stat['@abbreviation']}>
                 {stat['@abbreviation']}
-              </TableHeaderColumn>)
-            )
-          }
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-
-          {
-            gamelogs.length && gamelogs.map((match, index) =>
-              (<TableRow key={match.game.id} selected={this.isSelected(index)}>
-                <TableRowColumn>{index + 1}</TableRowColumn>
-                {
-                  match.keyStats.length && match.keyStats.map(stats =>
-                    (<TableRowColumn key={stats['#text']}>
-                      {stats['#text']}
-                    </TableRowColumn>)
-                  )
-                }
-              </TableRow>)
-            )
-          }
-        </TableBody>
-      </Table>
+              </option>)
+            )}
+          </select>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     );
   }
 }

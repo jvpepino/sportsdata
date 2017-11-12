@@ -3,9 +3,10 @@
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
-export {default as Main} from './main'
+export {default as Main} from './Main'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
 export {default as SearchForm} from './SearchForm'
-export {default as PlayerTable} from './PlayerTable'
 export {default as PlayerHeader} from './PlayerHeader'
+export {default as PlayerTable} from './PlayerTable'
+export {default as PlayerChart} from './PlayerChart'

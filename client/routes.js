@@ -5,7 +5,7 @@ import {Route, Switch} from 'react-router-dom'
 // import PropTypes from 'prop-types'
 import history from './history'
 
-import {Main, Login, Signup, UserHome, PlayerTable, PlayerHeader} from './components'
+import {Main, Login, Signup, UserHome, PlayerHeader, PlayerTable, PlayerChart } from './components'
 
 import {me} from './store'
 
@@ -26,7 +26,8 @@ class Routes extends Component {
         <Main>
           <PlayerHeader />
           <Switch>
-            <Route path="/player/:position" component={PlayerTable} />
+            <Route exact path="/player/:position" component={PlayerTable} />
+            <Route path="/player/:position/:statCat" component={PlayerChart} />
           </Switch>
         </Main>
       </Router>
