@@ -102,8 +102,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-// const mapStateToProps = (state) => ({
-//   player: state.gamelogs
-// })
-
 export default connect(null, mapDispatchToProps)(CompareForm);

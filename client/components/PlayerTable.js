@@ -28,12 +28,6 @@ class PlayerTable extends Component {
     });
   };
 
-  // toggleDisplay = () => {
-  //   this.setState({
-  //     displayTable: !!this.state.displayTable
-  //   })
-  // }
-
   handleSubmit = (event, selectedPosition) => {
     event.preventDefault();
     let statCat = event.target.category.value;
@@ -114,16 +108,5 @@ class PlayerTable extends Component {
 const mapStateToProps = (state) => ({
   gamelogs: state.gamelogs
 })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   handleSubmit (event) {
-//     event.preventDefault();
-//     const name = event.target.name.value;
-//     const league = event.target.league.value;
-//     const year = event.target.year.value;
-
-//     dispatch(getPlayerThunk(name, league, year))
-//   }
-// })
 
 export default connect(mapStateToProps)(PlayerTable);

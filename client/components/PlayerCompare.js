@@ -53,7 +53,7 @@ const PlayerCompare = (props) => {
   return (
     <div>
       <CompareHeader />
-      <VictoryChart theme={VictoryTheme.material}>
+      <VictoryChart theme={VictoryTheme.material} style={{ parent: { maxWidth: "50%", maxHeight: "50%" } }}>
         <VictoryLegend //x={175} y={150}
           //title="Legend"
           //centerTitle
@@ -113,24 +113,7 @@ const PlayerCompare = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  //gamelogs: state.gamelogs,
   compare: state.compare
 })
 
-// const mapDispatchToProps = (dispatch) => ({
-//   handleSubmit (event) {
-//     event.preventDefault();
-//     const name = event.target.name.value;
-//     const league = event.target.league.value;
-//     const year = event.target.year.value;
-
-//     dispatch(getPlayerThunk(name, league, year))
-//   }
-// })
-
 export default connect(mapStateToProps)(PlayerCompare);
-
-
-// if (!selectedStat) {
-//   compare.length && compare[0][0]
-// }

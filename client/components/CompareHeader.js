@@ -82,15 +82,3 @@ const mapStateToProps = (state) => ({
 })
 
 export default withRouter(connect(mapStateToProps)(CompareHeader));
-
-// <form onSubmit={(event) => this.handleSubmit(event, selectedPosition)} name='playerChart'>
-// <label htmlFor="category"><small>Stat</small></label>
-// <select name="category" type="text">
-//   { !!gamelogs[0] && gamelogs[0].keyStats.map(stat =>
-//     (<option key={stat['@abbreviation']} value={stat['@abbreviation']}>
-//       {stat['@abbreviation']}
-//     </option>)
-//   )}
-// </select>
-// <button type="submit">Submit</button>
-// </form>

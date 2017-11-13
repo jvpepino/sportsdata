@@ -39,7 +39,7 @@ const PlayerChart = (props) => {
   return (
     <div>
       <PlayerHeader />
-      <VictoryChart theme={VictoryTheme.material}>
+      <VictoryChart theme={VictoryTheme.material} style={{ parent: { maxWidth: "50%", maxHeight: "50%" } }}>
         <VictoryAxis
           label="Games"
           tickCount={plotData.length}
@@ -48,7 +48,7 @@ const PlayerChart = (props) => {
             axisLabel: {fontSize: 10, padding: 20},
             //grid: {stroke: (t) => t > 0.5 ? "red" : "grey"},
             ticks: {stroke: "grey", size: 5},
-            tickLabels: {fontSize: 5, padding: 5}
+            tickLabels: {fontSize: 5, padding: 5},
           }}
         />
         <VictoryAxis
@@ -81,16 +81,5 @@ const mapStateToProps = (state) => ({
   gamelogs: state.gamelogs,
 
 })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   handleSubmit (event) {
-//     event.preventDefault();
-//     const name = event.target.name.value;
-//     const league = event.target.league.value;
-//     const year = event.target.year.value;
-
-//     dispatch(getPlayerThunk(name, league, year))
-//   }
-// })
 
 export default connect(mapStateToProps)(PlayerChart);
