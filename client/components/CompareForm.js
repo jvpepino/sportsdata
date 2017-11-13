@@ -55,11 +55,11 @@ class CompareForm extends Component {
       <form onSubmit={this.submitAndClearForm} name='comparePlayers'>
         <h3>Compare Players</h3>
         <div>
-          <label htmlFor="name1"><small>Player One</small></label>
+          <label htmlFor="name1"><small>Player A</small></label>
           <input name="name1" type="text" value={this.state.name1} onChange={this.handleChange} />
         </div>
         <div>
-        <label htmlFor="name2"><small>Player Two</small></label>
+        <label htmlFor="name2"><small>Player B</small></label>
         <input name="name2" type="text" value={this.state.name2} onChange={this.handleChange} />
       </div>
         <div>

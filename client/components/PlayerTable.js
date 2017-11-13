@@ -36,7 +36,10 @@ class PlayerTable extends Component {
 
   handleSubmit = (event, selectedPosition) => {
     event.preventDefault();
-    const statCat = event.target.category.value;
+    let statCat = event.target.category.value;
+    if (statCat.slice(-1) === '%') {
+      statCat = statCat.slice(0, -1) + '_Pct';
+    }
     this.props.history.push(`/player/${selectedPosition}/${statCat}`)
   }
 
@@ -91,7 +94,7 @@ class PlayerTable extends Component {
         </Table>
         <hr />
         <form onSubmit={(event) => this.handleSubmit(event, selectedPosition)} name='playerChart'>
-          <label htmlFor="category"><small>Select Individual Stat</small></label>
+          <label htmlFor="category"><h3>Select Individual Stat</h3></label>
           <select name="category" type="text">
             { !!gamelogs[0] && gamelogs[0].keyStats.map(stat =>
               (<option key={stat['@abbreviation']} value={stat['@abbreviation']}>

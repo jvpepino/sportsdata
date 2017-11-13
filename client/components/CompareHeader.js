@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-// import {withRouter, Link} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 import React, {Component} from 'react';
 import positionalStats from '../../filterStatCategory';
 
@@ -16,7 +16,10 @@ const CompareHeader = (props) => {
 
   const handleSubmit = (event, selectedPosition) => {
     event.preventDefault();
-    const statCat = event.target.category.value;
+    let statCat = event.target.category.value;
+    if (statCat.slice(-1) === '%') {
+      statCat = statCat.slice(0, -1) + '_Pct';
+    }
     props.history.push(`/compare/${selectedPosition}/${statCat}`)
   }
 
@@ -78,7 +81,7 @@ const mapStateToProps = (state) => ({
   compare: state.compare
 })
 
-export default connect(mapStateToProps)(CompareHeader);
+export default withRouter(connect(mapStateToProps)(CompareHeader));
 
 // <form onSubmit={(event) => this.handleSubmit(event, selectedPosition)} name='playerChart'>
 // <label htmlFor="category"><small>Stat</small></label>
