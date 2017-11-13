@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { Component } from 'react'
 // import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
@@ -11,20 +11,41 @@ import { SearchForm, CompareForm } from '../components'
  *  else common to our entire app. The 'picture' inside the frame is the space
  *  rendered out by the component's `children`.
  */
-const Main = (props) => {
-  const {children, handleClick, isLoggedIn} = props
+class Main extends Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div>
-      <h1>Sportistics</h1>
-      <hr />
-      <SearchForm />
-      <hr />
-      <CompareForm />
-      <hr />
-      {children}
-    </div>
-  )
+    this.state = {
+      showSearchForm: true,
+    }
+    this.toggleForm = this.toggleForm.bind(this);
+  }
+
+  toggleForm () {
+    this.setState({
+      showSearchForm: !this.state.showSearchForm
+    })
+  }
+
+  render () {
+    const {children, handleClick, isLoggedIn} = this.props
+
+    return (
+      <div>
+        <h1>Sportistics</h1>
+        <button onClick={this.toggleForm}>Toggle Search</button>
+        <hr />
+        { this.state.showSearchForm &&
+          <SearchForm />
+        }
+        { !this.state.showSearchForm &&
+          <CompareForm />
+        }
+        <hr />
+        {children}
+      </div>
+    )
+  }
 }
 
 /**
