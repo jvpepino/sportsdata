@@ -33,6 +33,7 @@ class Main extends Component {
     return (
       <div>
         <h1>Sportistics</h1>
+        <Link to="/"><button>Home</button></Link>
         <button onClick={this.toggleForm}>Toggle Search</button>
         <hr />
         { this.state.showSearchForm &&
