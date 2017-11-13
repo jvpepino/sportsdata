@@ -25,6 +25,7 @@ const SearchForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit} name='searchPlayer'>
+      <h3>Player Search</h3>
       <div>
         <label htmlFor="name"><small>Player Name</small></label>
         <input name="name" type="text" />

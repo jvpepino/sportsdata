@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 // import {withRouter, Link} from 'react-router-dom';
 import React, {Component} from 'react';
 import { VictoryChart, VictoryTheme, VictoryLine } from 'victory';
+import { PlayerHeader } from '../components'
 import positionalStats from '../../filterStatCategory';
 
 const PlayerChart = (props) => {
@@ -33,17 +34,20 @@ const PlayerChart = (props) => {
   //console.log(plotData);
 
   return (
-    <VictoryChart theme={VictoryTheme.material}>
-      <VictoryLine
-        interpolation="natural"
-        style={{
-          data: { stroke: "#c43a31" },
-          parent: { border: "1px solid #ccc"}
-        }}
-        data={ plotData }
-        // domain={{x: [1, 16], y: [0, 600]}}
-      />
-    </VictoryChart>
+    <div>
+      <PlayerHeader />
+      <VictoryChart theme={VictoryTheme.material}>
+        <VictoryLine
+          interpolation="natural"
+          style={{
+            data: { stroke: "#c43a31" },
+            parent: { border: "1px solid #ccc"}
+          }}
+          data={ plotData }
+          // domain={{x: [1, 16], y: [0, 600]}}
+        />
+      </VictoryChart>
+    </div>
   )
 }
 

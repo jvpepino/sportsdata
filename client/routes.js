@@ -5,7 +5,7 @@ import {Route, Switch} from 'react-router-dom'
 // import PropTypes from 'prop-types'
 import history from './history'
 
-import {Main, Login, Signup, UserHome, PlayerHeader, PlayerTable, PlayerChart, PlayerCompare } from './components'
+import {Main, Login, Signup, UserHome, PlayerHeader, PlayerTable, PlayerChart, PlayerCompare, CompareHeader } from './components'
 
 import {me} from './store'
 
@@ -24,11 +24,11 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <Main>
-          <PlayerHeader />
           <Switch>
             <Route exact path="/player/:position" component={PlayerTable} />
             <Route path="/player/:position/:statCat" component={PlayerChart} />
-            <Route path="/compare/:position" component={PlayerCompare} />
+            <Route exact path="/compare/:position/" component={CompareHeader} />
+            <Route path="/compare/:position/:statCat" component={PlayerCompare} />
           </Switch>
         </Main>
       </Router>
@@ -36,7 +36,6 @@ class Routes extends Component {
   }
 }
 
-    // <Route path="/playerHeader" component={PlayerHeader} />
 /**
  * CONTAINER
  */

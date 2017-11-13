@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 // import {withRouter, Link} from 'react-router-dom';
 import React, {Component} from 'react';
-// import * as V from 'victory';
+import { PlayerHeader } from '../components'
 import positionalStats from '../../filterStatCategory';
 
 import {
@@ -58,6 +58,7 @@ class PlayerTable extends Component {
 
     return (
       <div>
+        <PlayerHeader />
         <Table onRowSelection={this.handleRowSelection}>
           <TableHeader>
             <TableRow>
@@ -88,8 +89,9 @@ class PlayerTable extends Component {
             }
           </TableBody>
         </Table>
+        <hr />
         <form onSubmit={(event) => this.handleSubmit(event, selectedPosition)} name='playerChart'>
-          <label htmlFor="category"><small>Stat</small></label>
+          <label htmlFor="category"><small>Select Individual Stat</small></label>
           <select name="category" type="text">
             { !!gamelogs[0] && gamelogs[0].keyStats.map(stat =>
               (<option key={stat['@abbreviation']} value={stat['@abbreviation']}>
@@ -97,7 +99,9 @@ class PlayerTable extends Component {
               </option>)
             )}
           </select>
-          <button type="submit">Submit</button>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
         </form>
       </div>
     );

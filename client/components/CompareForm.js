@@ -25,6 +25,7 @@ const CompareForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit} name='comparePlayers'>
+      <h3>Compare Players</h3>
       <div>
         <label htmlFor="name1"><small>Player One</small></label>
         <input name="name1" type="text" />
@@ -52,7 +53,7 @@ const CompareForm = (props) => {
         </select>
       </div>
       <div>
-        <button type="submit">Compare Players</button>
+        <button type="submit">Submit</button>
       </div>
     </form>
   )

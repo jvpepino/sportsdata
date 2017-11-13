@@ -17,6 +17,7 @@ const Main = (props) => {
   return (
     <div>
       <h1>Sportistics</h1>
+      <hr />
       <SearchForm />
       <hr />
       <CompareForm />
