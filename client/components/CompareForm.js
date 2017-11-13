@@ -1,62 +1,91 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 //import {withRouter, Link} from 'react-router-dom'
 import {compareGamelogsThunk} from '../store'
 
 
-const CompareForm = (props) => {
+class CompareForm extends Component {
+  constructor(props) {
+    super(props);
 
-  const leagues = ['NFL', 'NHL', 'NBA', 'MLB'];
-  const regPlay = ['Regular', 'Playoff'];
-  const years = [
-    '2007-2008',
-    '2008-2009',
-    '2009-2010',
-    '2010-2011',
-    '2011-2012',
-    '2012-2013',
-    '2013-2014',
-    '2014-2015',
-    '2015-2016',
-    '2016-2017'
-  ];
+    this.state = {
+      name1: '',
+      name2: ''
+    }
 
-  const { handleSubmit } = props;
+    this.handleChange = this.handleChange.bind(this);
+    this.submitAndClearForm = this.submitAndClearForm.bind(this);
+  }
 
-  return (
-    <form onSubmit={handleSubmit} name='comparePlayers'>
-      <h3>Compare Players</h3>
-      <div>
-        <label htmlFor="name1"><small>Player One</small></label>
-        <input name="name1" type="text" />
+  handleChange (event) {
+    const target = event.target;
+    const name = target.name;
+    const value = name.value;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  submitAndClearForm (event) {
+    this.props.handleSubmit(event);
+    this.setState({
+      name1: '',
+      name2: ''
+    });
+  }
+
+  render () {
+
+    const leagues = ['NFL', 'NHL', 'NBA', 'MLB'];
+    const regPlay = ['Regular', 'Playoff'];
+    const years = [
+      '2007-2008',
+      '2008-2009',
+      '2009-2010',
+      '2010-2011',
+      '2011-2012',
+      '2012-2013',
+      '2013-2014',
+      '2014-2015',
+      '2015-2016',
+      '2016-2017'
+    ];
+
+    return (
+      <form onSubmit={this.submitAndClearForm} name='comparePlayers'>
+        <h3>Compare Players</h3>
+        <div>
+          <label htmlFor="name1"><small>Player One</small></label>
+          <input name="name1" type="text" value={this.state.name1} onChange={this.handleChange} />
+        </div>
+        <div>
+        <label htmlFor="name2"><small>Player Two</small></label>
+        <input name="name2" type="text" value={this.state.name2} onChange={this.handleChange} />
       </div>
-      <div>
-      <label htmlFor="name2"><small>Player Two</small></label>
-      <input name="name2" type="text" />
-    </div>
-      <div>
-        <label htmlFor="league"><small>League</small></label>
-        <select name="league" type="text" defaultValue="nfl">
-          { leagues.map( league => <option key={league} value={league}>{league.toUpperCase()}</option> )}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="year"><small>Year</small></label>
-        <select name="year" type="text" defaultValue="2016-2017">
-          { years.map(year => <option key={year} value={year}>{year}</option> )}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="yearType"><small>Type</small></label>
-        <select name="yearType" type="text" defaultValue="regular">
-          { regPlay.map(type => <option key={type} value={type}>{type}</option> )}
-        </select>
-      </div>
-      <div>
-        <button type="submit">Submit</button>
-      </div>
-    </form>
-  )
+        <div>
+          <label htmlFor="league"><small>League</small></label>
+          <select name="league" type="text" defaultValue="nfl">
+            { leagues.map( league => <option key={league} value={league}>{league.toUpperCase()}</option> )}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="year"><small>Year</small></label>
+          <select name="year" type="text" defaultValue="2016-2017">
+            { years.map(year => <option key={year} value={year}>{year}</option> )}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="yearType"><small>Type</small></label>
+          <select name="yearType" type="text" defaultValue="regular">
+            { regPlay.map(type => <option key={type} value={type}>{type}</option> )}
+          </select>
+        </div>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    )
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
