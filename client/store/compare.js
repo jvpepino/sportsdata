@@ -9,7 +9,7 @@ const ADD_GAMELOGS = 'ADD_GAMELOGS'
 /**
  * INITIAL STATE
  */
-//const intialState = {}
+const intialState = [];
 
 /**
  * ACTION CREATORS
@@ -19,7 +19,6 @@ const addGamelogs = gamelogs => ({type: ADD_GAMELOGS, gamelogs})
 /**
  * THUNK CREATORS
  */
-
 export const compareGamelogsThunk = (name1, name2, league, year) => {
   return dispatch => {
     const playerOne = axios.get(`/api/sportsData?name=${name1}&league=${league}&year=${year}`);
@@ -39,7 +38,7 @@ export const compareGamelogsThunk = (name1, name2, league, year) => {
 /**
  * REDUCER
  */
-export default function (state = [], action) {
+export default function (state = intialState, action) {
   switch (action.type) {
     case ADD_GAMELOGS:
       return action.gamelogs

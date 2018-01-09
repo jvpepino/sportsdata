@@ -1,8 +1,7 @@
 import {connect} from 'react-redux';
-// import {withRouter, Link} from 'react-router-dom';
-import React, {Component} from 'react';
-import { VictoryChart, VictoryTheme, VictoryLine, VictoryAxis } from 'victory';
-import { PlayerHeader } from '../components'
+import React from 'react';
+import {VictoryChart, VictoryTheme, VictoryLine, VictoryAxis} from 'victory';
+import {PlayerHeader} from '../components'
 import positionalStats from '../../filterStatCategory';
 
 const PlayerChart = (props) => {
@@ -34,7 +33,6 @@ const PlayerChart = (props) => {
       }
     })
   })
-  // console.log(plotData);
 
   return (
     <div>
@@ -79,7 +77,6 @@ const PlayerChart = (props) => {
 
 const mapStateToProps = (state) => ({
   gamelogs: state.gamelogs,
-
 })
 
 export default connect(mapStateToProps)(PlayerChart);

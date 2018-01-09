@@ -1,10 +1,10 @@
 import {connect} from 'react-redux';
-import {withRouter, Link} from 'react-router-dom';
-import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
+import React from 'react';
 import positionalStats from '../../filterStatCategory';
 
 const CompareHeader = (props) => {
-  const { compare } = props;
+  const {compare} = props;
 
   //NFL Position to Category
   const positionToCategories = {

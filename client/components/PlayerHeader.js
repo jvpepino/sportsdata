@@ -1,6 +1,5 @@
 import {connect} from 'react-redux';
-// import {withRouter, Link} from 'react-router-dom';
-import React, {Component} from 'react';
+import React from 'react';
 
 const PlayerHeader = (props) => {
   const { gamelogs } = props;

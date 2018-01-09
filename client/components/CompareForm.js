@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-//import {withRouter, Link} from 'react-router-dom'
 import {compareGamelogsThunk} from '../store'
 
-
+/**
+ * COMPONENT
+ */
 class CompareForm extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +36,6 @@ class CompareForm extends Component {
   }
 
   render () {
-
     const leagues = ['NFL', 'NHL', 'NBA', 'MLB'];
     const regPlay = ['Regular', 'Playoff'];
     const years = [
@@ -52,7 +52,7 @@ class CompareForm extends Component {
     ];
 
     return (
-      <form onSubmit={this.submitAndClearForm} name='comparePlayers'>
+      <form onSubmit={this.submitAndClearForm} name="comparePlayers">
         <h3>Compare Players</h3>
         <div>
           <label htmlFor="name1"><small>Player A</small></label>

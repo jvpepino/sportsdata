@@ -1,13 +1,12 @@
 import {connect} from 'react-redux';
-// import {withRouter, Link} from 'react-router-dom';
-import React, {Component} from 'react';
-import { CompareHeader } from '../components'
-import { VictoryChart, VictoryTheme, VictoryLine, VictoryAxis, VictoryLegend } from 'victory';
+import React from 'react';
+import {CompareHeader} from '../components'
+import {VictoryChart, VictoryTheme, VictoryLine, VictoryAxis, VictoryLegend} from 'victory';
 import positionalStats from '../../filterStatCategory';
 
 const PlayerCompare = (props) => {
 
-  const { compare, match } = props;
+  const {compare, match} = props;
   const selectedPosition = match.params.position;
   let selectedStat = match.params.statCat;
   if (selectedStat.slice(-4) === '_Pct') {
@@ -43,8 +42,7 @@ const PlayerCompare = (props) => {
       })
     }
   })
-  // console.log(plotData1);
-  // console.log(plotData2);
+
   const playerA = compare[0][0].player;
   const playerB = compare[1][0].player;
   const nameA = `${playerA.FirstName} ${playerA.LastName}`;
@@ -69,7 +67,6 @@ const PlayerCompare = (props) => {
         <VictoryAxis
           label="Games"
           tickCount={Math.max(plotData1.length, plotData2.length)}
-          //{console.log({tickCount})}
           style={{
             //axis: {stroke: "#756f6a"},
             axisLabel: {fontSize: 10, padding: 20},

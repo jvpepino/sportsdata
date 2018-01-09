@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
-// import {withRouter, Link} from 'react-router-dom';
 import React, {Component} from 'react';
-import { PlayerHeader } from '../components'
+import {PlayerHeader} from '../components'
 import positionalStats from '../../filterStatCategory';
 
 import {

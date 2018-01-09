@@ -8,7 +8,7 @@ msf.authenticate(auth.username, auth.password);
 
 function cleanUpName(name) {
   name = name.toLowerCase()
-  let nameArr = name.split(' ')
+  const nameArr = name.split(' ')
   return nameArr.filter(el => !!el).map(el => el.trim()).join('-')
 }
 
@@ -18,7 +18,6 @@ router.get('/', (req, res, next) => {
 
   msf.getData(league, year, 'player_gamelogs', 'json', {player: name})
     .then(result => {
-      // console.log(result);
       res.json(result)
     })
     .catch(console.error.bind(console))

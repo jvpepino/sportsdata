@@ -6,14 +6,10 @@ import history from '../history'
  */
 const GET_GAMELOGS = 'GET_GAMELOGS'
 
-
 /**
  * INITIAL STATE
  */
-// const intialState = {
-//   gamelogs: [],
-//   compare: []
-// }
+const intialState = [];
 
 /**
  * ACTION CREATORS
@@ -46,7 +42,7 @@ export const getGamelogsThunk = (name, league, year) => {
 /**
  * REDUCER
  */
-export default function (state = [], action) {
+export default function (state = intialState, action) {
   switch (action.type) {
     case GET_GAMELOGS:
       return action.gamelogs
