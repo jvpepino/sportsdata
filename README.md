@@ -1,3 +1,6 @@
+## Project Summary
+  Two day stackathon project to further experience and explore new technologies.
+
 ## Setup
 
 1) Clone project to a directory on local machine.
